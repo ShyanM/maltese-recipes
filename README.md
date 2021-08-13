@@ -69,10 +69,10 @@ Login
 - ![alt text](assets/wireframes/Login.png)
 
 Landing page - logged in
-- ![alt text](assets/wireframes/landingpage-loggedin.png)
+- ![alt text](assets/wireframes/homeLoggedin.png)
 
 Saved Recipes
-- ![alt text](assets/wireframes/Saved Recipe.png)
+- ![alt text](assets/wireframes/SavedRecipe.png)
 
 New Recipes
-- ![alt text](assets/wireframes/New Recipes.png)
+- ![alt text](assets/wireframes/NewRecipes.png)
