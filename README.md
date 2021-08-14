@@ -16,10 +16,11 @@ The aim of this project is to have a collection of Maltese recipes in one place.
     * Wireframes
       
 2. Features
-3. Technologies used
-4. Testing
-5. Deployment
-6. Credits
+3. Database Design
+4. Technologies used
+5. Testing
+6. Deployment
+7. Credits
     * Content
     * Code
     * Acknowledgements
@@ -58,21 +59,46 @@ As a customer I want:
 
 ### Wireframes
 
-Initial landing page - Logged out
+Logged out user:
 
-- ![alt text](assets/wireframes/homeloggedout.png)
+Home
+
+- ![alt text](assets/wireframes/home_loggedout.png)
+
+Individual Recipes
+
+- ![alt text](assets/wireframes/ind_recipe_loggedout.png)
 
 Register
-- ![alt text](assets/wireframes/Register.png)
+- ![alt text](assets/wireframes/register.png)
 
 Login
-- ![alt text](assets/wireframes/Login.png)
+- ![alt text](assets/wireframes/login.png)
 
-Landing page - logged in
-- ![alt text](assets/wireframes/homeLoggedin.png)
+Logged in user:
+
+Home
+- ![alt text](assets/wireframes/home_loggedin.png)
 
 Saved Recipes
-- ![alt text](assets/wireframes/SavedRecipe.png)
+- ![alt text](assets/wireframes/saved_recipe.png)
 
-New Recipes
-- ![alt text](assets/wireframes/NewRecipes.png)
+Individual Recipes
+- ![alt text](assets/wireframes/home_loggedout.png)
+
+Add recipes and/or copy recipes
+- ![alt text](assets/wireframes/add_recipe.png)
+
+My Recipes
+- ![alt text](assets/wireframes/my_recipes.png)
+
+Profile
+- ![alt text](assets/wireframes/profile.png)
+
+
+## 2. Features
+
+## 3. Database Design
+
+- ![alt text](assets/maltese_recipes.png)
+
