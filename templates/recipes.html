@@ -1,26 +1,19 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Maltese Recipes</title>
-</head>
-<body>
+
+{% extends "base.html" %}
+{% block content %}
 
     {% for recipe in recipes %}
-    {{ recipe.image_url}}<br>
-    {{ recipe.maltese_name }}<br>
-    {{ recipe.english_name }}<br>
-    {{ recipe.category_name }}<br>
-    {{ recipe.serving }}<br>
-    {{ recipe.prep_time }}<br>
-    {{ recipe.cook_time }}<br>
-    {{ recipe.ingredients }}<br>
-    {{ recipe.method }}<br>
-    {{ recipe.username }}<br>
-    {{ recipe.copied_from }}<br>
+        {{ recipe.image_url}}<br>
+        {{ recipe.maltese_name }}<br>
+        {{ recipe.english_name }}<br>
+        {{ recipe.category_name }}<br>
+        {{ recipe.serving }}<br>
+        {{ recipe.prep_time }}<br>
+        {{ recipe.cook_time }}<br>
+        {{ recipe.ingredients }}<br>
+        {{ recipe.method }}<br>
+        {{ recipe.username }}<br>
+        {{ recipe.copied_from }}<br>
     {% endfor %}
-    
-</body>
-</html>
+
+{% endblock %}
