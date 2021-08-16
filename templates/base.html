@@ -32,7 +32,7 @@
                     <li><a href="#">My Recipes</a></li>
                     <li><a href="#">Saved Recipes</a></li>
                     <li><a href="#">Add Recipes</a></li>
-                    <li><a href="#">Profile</a></li>
+                    <li><a href="{{ url_for('profile', username=session['user']) }}">Profile</a></li>
                 </ul>
             </div>
         </nav>
@@ -45,7 +45,7 @@
             <li><a href="#">My Recipes</a></li>
             <li><a href="#">Saved Recipes</a></li>
             <li><a href="#">Add Recipes</a></li>
-            <li><a href="#">Profile</a></li>
+            <li><a href="{{ url_for('profile', username=session['user']) }}">Profile</a></li>
         </ul>
     </header>
 
