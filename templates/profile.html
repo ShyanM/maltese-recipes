@@ -3,10 +3,14 @@
 
 <div class="row">
     <div class="col s12 m8 offset-m2" >
-        <fdiv class="card-panel"">
+        <div class="card-panel"">
             <h3 class="center-align">
                 {{ username }}'s Profile
             </h3>
+            <div>
+                <li><a href="{{ url_for('logout') }}">Log Out</a></li>
+            </div>
+
         </div>
     </div>
 </div>
