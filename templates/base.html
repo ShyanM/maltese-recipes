@@ -30,7 +30,7 @@
                     {% if session.user %}
                         <li><a href="#">My Recipes</a></li>
                         <li><a href="#">Saved Recipes</a></li>
-                        <li><a href="#">Add Recipes</a></li>
+                        <li><a href="{{ url_for('add_recipe') }}">Add Recipe</a></li>
                         <li><a href="{{ url_for('profile', username=session['user']) }}">Profile</a></li>
                     {% else %}
                         <li><a href="{{ url_for('login') }}">Login</a></li>
@@ -46,7 +46,7 @@
             {% if session.user %}
                 <li><a href="#">My Recipes</a></li>
                 <li><a href="#">Saved Recipes</a></li>
-                <li><a href="#">Add Recipes</a></li>
+                <li><a href="{{ url_for('add_recipe') }}">Add Recipe</a></li>
                 <li><a href="{{ url_for('profile', username=session['user']) }}">Profile</a></li>
             {% else %}
                 <li><a href="{{ url_for('login') }}">Login</a></li>
