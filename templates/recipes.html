@@ -1,19 +1,36 @@
-
 {% extends "base.html" %}
 {% block content %}
 
-    {% for recipe in recipes %}
-        {{ recipe.image_url}}<br>
-        {{ recipe.maltese_name }}<br>
-        {{ recipe.english_name }}<br>
-        {{ recipe.category_name }}<br>
-        {{ recipe.serving }}<br>
-        {{ recipe.prep_time }}<br>
-        {{ recipe.cook_time }}<br>
-        {{ recipe.ingredients }}<br>
-        {{ recipe.method }}<br>
-        {{ recipe.username }}<br>
-        {{ recipe.copied_from }}<br>
-    {% endfor %}
+
+<div class="row">
+  {% for recipe in recipes %}
+  <a href="#">
+  <div class="col s12 m4">
+    
+    <div class="card hoverable">
+
+      <div class="card-image">
+        <img src="{{ recipe.image_url}}"">
+
+        <form action="">
+          <a class=" btn-floating halfway-fab waves-effect waves-light red"><i class="far fa-heart"></i></a>
+        </form>
+            
+      </div>
+
+      <div class=" card-content">
+
+        <span class="card-title">{{ recipe.maltese_name }}</span>
+        <span class="card-title">{{ recipe.english_name }}</span>
+
+      </div>
+
+    </div>
+    
+  </div>
+</a>
+  {% endfor %}
+
+</div>
 
 {% endblock %}
