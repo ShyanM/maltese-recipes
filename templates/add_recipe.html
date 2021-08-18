@@ -1,6 +1,57 @@
 {% extends "base.html" %}
 {% block content %}
 
-Add Recipe
+<h2 class="center-align">Add Recipe</h2>
+
+<div class="row">
+    <form class="col s12" method=POST action="">
+        <div class="row">
+            <div class="input-field col s12">
+                <textarea id="img_url" name="img_url" class="materialize-textarea"></textarea>
+                <label for="img_url">Add image url</label>
+            </div>
+
+            <div class="input-field col s12">
+                <textarea id="maltese_name" name="maltese_name" class="materialize-textarea"></textarea>
+                <label for="maltese_name">Insert Maltese recipe name</label>
+            </div>
+            <div class="input-field col s12">
+                <textarea id="english_name" name="english_name" class="materialize-textarea"></textarea>
+                <label for="english_name">Insert English recipe Name</label>
+            </div>
+
+            <div class="input-field col s12">
+                <select>
+                  <option value="" disabled selected>Choose your option</option>
+                  <option value="1">Option 1</option>
+                  <option value="2">Option 2</option>
+                  <option value="3">Option 3</option>
+                </select>
+                <label>Materialize Select</label>
+              </div>
+
+
+            <div class="input-field col s4">
+                <textarea id="prep_time" name="prep_time" class="materialize-textarea"></textarea>
+                <label for="prep_time">Prep time in mins</label>
+            </div>
+
+            <div class="input-field col s4">
+                <textarea id="cook_time" name="cook_time" class="materialize-textarea"></textarea>
+                <label for="cook_time">Cooking time in mins</label>
+            </div>
+
+            <div class="input-field col s12">
+                <textarea id="ingredients" name="ingredients" class="materialize-textarea"></textarea>
+                <label for="ingredients">Ingredient list</label>
+            </div>
+
+            <div class="input-field col s12">
+                <textarea id="method" name="method" class="materialize-textarea"></textarea>
+                <label for="method">Recipe method</label>
+            </div>
+        </div>
+    </form>
+</div>
 
 {% endblock %}
