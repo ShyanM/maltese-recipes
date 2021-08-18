@@ -111,7 +111,8 @@ def recipe(recipe_id):
 
 @app.route("/add_recipe")
 def add_recipe():
-    return render_template("add_recipe.html")
+    categories = mongo.db.categories.find().sort("category_name", 1)
+    return render_template("add_recipe.html", categories=categories)
 
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),

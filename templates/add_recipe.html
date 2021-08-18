@@ -3,8 +3,10 @@
 
 <h2 class="center-align">Add Recipe</h2>
 
-<div class="row">
+<div class="row card-panel">
     <form class="col s12" method=POST action="">
+      
+        
         <div class="row">
             <div class="input-field col s12">
                 <textarea id="img_url" name="img_url" class="materialize-textarea"></textarea>
@@ -21,22 +23,22 @@
             </div>
 
             <div class="input-field col s12">
-                <select>
-                  <option value="" disabled selected>Choose your option</option>
-                  <option value="1">Option 1</option>
-                  <option value="2">Option 2</option>
-                  <option value="3">Option 3</option>
+                <select id="category_name" name="category_name" class="validate" required>
+                  <option value="" disabled selected>Choose Category</option>
+                  {% for category in categories %}
+                  <option value="{{ category.category_name }}">{{ category.category_name }}</option>
+                  {% endfor %}
+
                 </select>
-                <label>Materialize Select</label>
+                <label for="category_name">Meal Category</label>
               </div>
 
-
-            <div class="input-field col s4">
+            <div class="input-field col s5">
                 <textarea id="prep_time" name="prep_time" class="materialize-textarea"></textarea>
                 <label for="prep_time">Prep time in mins</label>
             </div>
 
-            <div class="input-field col s4">
+            <div class="input-field col s5 offset-s2">
                 <textarea id="cook_time" name="cook_time" class="materialize-textarea"></textarea>
                 <label for="cook_time">Cooking time in mins</label>
             </div>
