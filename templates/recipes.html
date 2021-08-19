@@ -4,7 +4,7 @@
 
 <div class="row">
   {% for recipe in recipes %}
-  <a href="{{ url_for('recipe', recipe_id=recipe._id) }}">
+  <a href="{{ url_for('ind_recipe', recipe_id=recipe._id) }}">
   <div class="col s12 m4">
     
     <div class="card hoverable">

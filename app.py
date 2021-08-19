@@ -104,15 +104,41 @@ def logout():
 
 # Individual Recipe page
 @app.route("/ind_recipe/<recipe_id>")
-def recipe(recipe_id):
+def ind_recipe(recipe_id):
+    recipe = mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
+    ingredients = recipe['ingredients']
+    method = recipe['method']
 
-    return render_template("ind_recipe.html")
+    return render_template("ind_recipe.html",
+                           recipe=recipe,
+                           ingredients=ingredients,
+                           method=method
+                           )
 
 
-@app.route("/add_recipe")
+# Add Recipe
+@app.route("/add_recipe", methods=["GET", "POST"])
 def add_recipe():
+    if request.method == "POST":
+        recipe = {
+            "image_url": request.form.get("image_url"),
+            "maltese_name": request.form.get("maltese_name"),
+            "english_name": request.form.get("english_name"),
+            "category_name": request.form.get("category_name"),
+            "serving": request.form.get("serving"),
+            "prep_time": request.form.get("prep_time"),
+            "cook_time": request.form.get("cook_time"),
+            "ingredients": request.form.getlist("ingredients"),
+            "method": request.form.getlist("method"),
+            "username": session["user"]
+
+        }
+        mongo.db.tasks.insert_one(recipe)
+        flash("Recipe added!")
+        return redirect(url_for("recipes"))
     categories = mongo.db.categories.find().sort("category_name", 1)
     return render_template("add_recipe.html", categories=categories)
+
 
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
