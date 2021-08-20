@@ -25,13 +25,13 @@ def all_recipes():
     return render_template("recipes.html", recipes=recipes)
 
 
-
 @app.route("/my_recipes", methods=["GET", "POST"])
-def my_recipe():
+def my_recipes():
     my_recipes = list(mongo.db.recipes.find())
-        
     categories = mongo.db.categories.find()
-    return render_template("my_recipes.html", my_recipes=my_recipes, categories=categories)
+    return render_template("my_recipes.html",
+    my_recipes=my_recipes,
+    categories=categories)
 
 
 # ------------------------ USER -----------------------------------
@@ -76,7 +76,9 @@ def login():
                 existing_user["password"], request.form.get("password")):
                     session["user"] = request.form.get("username").lower()
                     flash("Welcome, {}".format(request.form.get("username")))
-                    return redirect(url_for("profile", username=session["user"]))
+                    return redirect(url_for(
+                        "profile",
+                        username=session["user"]))
             else:
                 # invalid password match
                 flash("Incorrect Username and/or Password")
@@ -132,6 +134,22 @@ def ind_recipe(recipe_id):
 @app.route("/add_recipe", methods=["GET", "POST"])
 def add_recipe():
     if request.method == "POST":
+
+        amounts = request.form.getlist("amount")
+        unit_names = request.form.getlist("unit_name")
+        ingredient_names = request.form.getlist("ingredient_name")
+        ingredient = [None] * len(ingredient_names)
+        ingredients = []
+
+        for i in range(len(ingredient_names)):
+            ingredient[i] = {
+                "amount": amounts[i],
+                "unit_name": unit_names[i],
+                "ingredient_name": ingredient_names[i],
+            }
+
+            ingredients.append(ingredient[i])
+
         recipe = {
             "image_url": request.form.get("image_url"),
             "maltese_name": request.form.get("maltese_name"),
@@ -140,17 +158,65 @@ def add_recipe():
             "serving": request.form.get("serving"),
             "prep_time": request.form.get("prep_time"),
             "cook_time": request.form.get("cook_time"),
-            "ingredients": request.form.getlist("ingredients"),
+            "ingredients": ingredients,
             "method": request.form.getlist("method"),
             "username": session["user"]
         }
-        mongo.db.tasks.insert_one(recipe)
+        mongo.db.recipes.insert_one(recipe)
         flash("Recipe added!")
-        return redirect(url_for("add_recipe"))
+        return redirect(url_for("my_recipes"))
 
     categories = mongo.db.categories.find().sort("category_name", 1)
     return render_template("add_recipe.html", categories=categories)
 
+
+# Edit Recipe
+
+@app.route("/edit_recipe<recipe_id>",  methods=["GET", "POST"])
+def edit_recipe(recipe_id):
+    categories = mongo.db.categories.find()
+    recipe = mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
+    ingredients = recipe['ingredients']
+    method = recipe['method']
+
+    if request.method == "POST":
+
+        amounts = request.form.getlist("amount")
+        unit_names = request.form.getlist("unit_name")
+        ingredient_names = request.form.getlist("ingredient_name")
+        ingredient = [None] * len(ingredient_names)
+        ingredients = []
+
+        for i in range(len(ingredient_names)):
+            ingredient[i] = {
+                "amount": amounts[i],
+                "unit_name": unit_names[i],
+                "ingredient_name": ingredient_names[i],
+            }
+
+            ingredients.append(ingredient[i])
+
+        recipe_updated = {
+            "image_url": request.form.get("image_url"),
+            "maltese_name": request.form.get("maltese_name"),
+            "english_name": request.form.get("english_name"),
+            "category_name": request.form.get("category_name"),
+            "serving": request.form.get("serving"),
+            "prep_time": request.form.get("prep_time"),
+            "cook_time": request.form.get("cook_time"),
+            "ingredients": ingredients,
+            "method": request.form.getlist("method"),
+            "username": session["user"]
+        }
+        mongo.db.recipes.replace_one(recipe, recipe_updated)
+        flash("Recipe updated!")
+        return redirect(url_for("my_recipes")
+    return render_template(
+            "edit_recipe.html",
+            recipe=recipe,
+            categories=categories,
+            ingredients=ingredients,
+            method=method)
 
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),

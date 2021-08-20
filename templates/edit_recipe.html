@@ -1,32 +1,42 @@
 {% extends "base.html" %}
 {% block content %}
 
-<h2 class="center-align">Add Recipe</h2>
+<h2 class="center-align">Edit Recipe</h2>
 
 <div class="row card-panel">
-    <form class="col s12" method="POST" action="{{ url_for('add_recipe') }}">
+    <form class="col s12" method="POST" action="{{ url_for('edit_recipe', recipe_id=recipe._id) }}">
 
 
         <div class="row">
             <div class="input-field col s12">
-                <textarea id="img_url" name="img_url" class="materialize-textarea"></textarea>
-                <label for="img_url">Add image url</label>
+                <textarea id="img_url" name="img_url" class="materialize-textarea">
+                    {{- recipe.image_url -}}
+                </textarea>
+                <label for="img_url">Image Url</label>
             </div>
 
             <div class="input-field col s12">
-                <textarea id="maltese_name" name="maltese_name" class="materialize-textarea"></textarea>
-                <label for="maltese_name">Insert Maltese recipe name</label>
+                <textarea id="maltese_name" name="maltese_name" class="materialize-textarea">
+                    {{- recipe.maltese_name -}}
+                </textarea>
+                <label for="maltese_name">Maltese recipe name</label>
             </div>
             <div class="input-field col s12">
-                <textarea id="english_name" name="english_name" class="materialize-textarea"></textarea>
-                <label for="english_name">Insert English recipe Name</label>
+                <textarea id="english_name" name="english_name" class="materialize-textarea">
+                    {{- recipe.english_name -}}
+                </textarea>
+                <label for="english_name">English recipe Name</label>
             </div>
 
             <div class="input-field col s12">
                 <select id="category_name" name="category_name" class="validate" required>
                     <option value="" disabled selected>Choose Category</option>
                     {% for category in categories %}
+                    {% if category.category_name == recipe.category_name %}
                     <option value="{{ category.category_name }}">{{ category.category_name }}</option>
+                    {% else %}
+                    <option value="{{ category.category_name }}" selected>{{ category.category_name }}</option>
+                    {% endif %}
                     {% endfor %}
 
                 </select>
@@ -34,26 +44,38 @@
             </div>
 
             <div class="input-field col s5">
-                <textarea id="prep_time" name="prep_time" class="materialize-textarea"></textarea>
+                <textarea id="prep_time" name="prep_time" class="materialize-textarea">
+                    {{- recipe.prep_time -}}
+                </textarea>
                 <label for="prep_time">Prep time in mins</label>
             </div>
 
             <div class="input-field col s5 offset-s2">
-                <textarea id="cook_time" name="cook_time" class="materialize-textarea"></textarea>
+                <textarea id="cook_time" name="cook_time" class="materialize-textarea">
+                    {{- recipe.cook_time -}}
+                </textarea>
                 <label for="cook_time">Cooking time in mins</label>
             </div>
 
+            {% for ingredient in ingredients %}
+
             <div class="row" id="inputIngredientRow">
                 <div class="input-field col s2">
-                    <textarea id="amount" name="amount" class="materialize-textarea"></textarea>
+                    <textarea id="amount" name="amount" class="materialize-textarea">
+                        {{- ingredient.amount -}}
+                    </textarea>
                     <label for="amount">Amount</label>
                 </div>
                 <div class="input-field col s2">
-                    <textarea id="unit" name="unit" class="materialize-textarea"></textarea>
+                    <textarea id="unit" name="unit" class="materialize-textarea">
+                        {{- ingredient.unit -}}
+                    </textarea>
                     <label for="unit">Unit</label>
                 </div>
                 <div class="input-field col s6">
-                    <textarea id="ingredients" name="ingredients" class="materialize-textarea"></textarea>
+                    <textarea id="ingredients" name="ingredients" class="materialize-textarea">
+                        {{- ingredient.ingredient_name -}}
+                    </textarea>
                     <label for="ingredients">Ingredient Name</label>
                 </div>
                 <div class="col s1">
@@ -62,10 +84,15 @@
 
             </div>
 
+           
+
             <div class="row" id="newIngredient"></div>
+            {% endfor %}
 
             <div class="input-field col s10" id="inputMethodRow">
-                <textarea id="method" name="method" class="materialize-textarea"></textarea>
+                <textarea id="method" name="method" class="materialize-textarea">
+                    {{- recipe.method -}}
+                </textarea>
                 <label for="method">Recipe Instructions</label>
             </div>
             <div class="col s1">
