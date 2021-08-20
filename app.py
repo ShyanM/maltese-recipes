@@ -25,6 +25,15 @@ def all_recipes():
     return render_template("recipes.html", recipes=recipes)
 
 
+
+@app.route("/my_recipes", methods=["GET", "POST"])
+def my_recipe():
+    my_recipes = list(mongo.db.recipes.find())
+        
+    categories = mongo.db.categories.find()
+    return render_template("my_recipes.html", my_recipes=my_recipes, categories=categories)
+
+
 # ------------------------ USER -----------------------------------
 
 # Register

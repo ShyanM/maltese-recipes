@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block content %}
+
+
+<div class="row">
+  {% for recipe in recipes %}
+  {% if session["user"] == recipe.username %}
+  <a href="{{ url_for('ind_recipe', recipe_id=recipe._id) }}">
+  <div class="col s12 m4">
+    
+    <div class="card hoverable">
+
+      <div class="card-image">
+        <img src="{{ recipe.image_url}}"">
+
+        <form action="">
+          <a class=" btn-floating halfway-fab waves-effect waves-light red"><i class="far fa-heart"></i></a>
+        </form>
+            
+      </div>
+
+      <div class=" card-content">
+
+        <span class="card-title">{{ recipe.maltese_name }}</span>
+        <span class="card-title">{{ recipe.english_name }}</span>
+
+      </div>
+
+    </div>
+    
+  </div>
+</a>
+{% endif %}
+{% endfor %}
+</div>
+
+{% endblock %}
