@@ -5,8 +5,8 @@
 
 <div class="row card-panel">
     <form class="col s12" method=POST action="">
-      
-        
+
+
         <div class="row">
             <div class="input-field col s12">
                 <textarea id="img_url" name="img_url" class="materialize-textarea"></textarea>
@@ -24,14 +24,14 @@
 
             <div class="input-field col s12">
                 <select id="category_name" name="category_name" class="validate" required>
-                  <option value="" disabled selected>Choose Category</option>
-                  {% for category in categories %}
-                  <option value="{{ category.category_name }}">{{ category.category_name }}</option>
-                  {% endfor %}
+                    <option value="" disabled selected>Choose Category</option>
+                    {% for category in categories %}
+                    <option value="{{ category.category_name }}">{{ category.category_name }}</option>
+                    {% endfor %}
 
                 </select>
                 <label for="category_name">Meal Category</label>
-              </div>
+            </div>
 
             <div class="input-field col s5">
                 <textarea id="prep_time" name="prep_time" class="materialize-textarea"></textarea>
@@ -43,31 +43,45 @@
                 <label for="cook_time">Cooking time in mins</label>
             </div>
 
-            <div class="input-field col s3">
-                <textarea id="amount" name="amount" class="materialize-textarea"></textarea>
-                <label for="amount">Amount</label>
-            </div>
-            <div class="input-field col s3">
-                <textarea id="unit" name="unit" class="materialize-textarea"></textarea>
-                <label for="unit">Unit</label>
-            </div>
-            <div class="input-field col s6">
-                <textarea id="ingredients" name="ingredients" class="materialize-textarea"></textarea>
-                <label for="ingredients">Ingredient Name</label>
+            <div class="row" id="inputIngredientRow">
+                <div class="input-field col s2">
+                    <textarea id="amount" name="amount" class="materialize-textarea"></textarea>
+                    <label for="amount">Amount</label>
+                </div>
+                <div class="input-field col s2">
+                    <textarea id="unit" name="unit" class="materialize-textarea"></textarea>
+                    <label for="unit">Unit</label>
+                </div>
+                <div class="input-field col s6">
+                    <textarea id="ingredients" name="ingredients" class="materialize-textarea"></textarea>
+                    <label for="ingredients">Ingredient Name</label>
+                </div>
+                <div class="col s1">
+                    <button class="btn" id="addIngredientRow"><i class="fas fa-plus-circle"></i></button>
+                </div>
+
             </div>
 
-            <div class="input-field col s12">
+            <div class="row" id="newIngredient"></div>
+
+            <div class="input-field col s10" id="inputMethodRow">
                 <textarea id="method" name="method" class="materialize-textarea"></textarea>
                 <label for="method">Recipe Instructions</label>
             </div>
-        </div>
+            <div class="col s1">
+                <button class="btn" id="addMethodRow"><i class="fas fa-plus-circle"></i></button>
+            </div>
 
-        <div class="row">
-            <button class="btn waves-effect waves-light" type="submit" >Submit
-               
-              </button>
+            <div class="row" id="newMethod"></div>
         </div>
-    </form>
+</div>
+
+<div class="row">
+    <button class="btn waves-effect waves-light" type="submit">Submit
+
+    </button>
+</div>
+</form>
 </div>
 
 {% endblock %}
