@@ -25,8 +25,9 @@ def all_recipes():
     return render_template("recipes.html", recipes=recipes)
 
 
-# Register
+# ------------------------ USER -----------------------------------
 
+# Register
 @app.route("/register", methods=["GET", "POST"])
 def register():
     if request.method == "POST":
@@ -102,9 +103,12 @@ def logout():
     return redirect(url_for("login"))
 
 
+# ------------------------ RECIPE -----------------------------------
+
 # Individual Recipe page
 @app.route("/ind_recipe/<recipe_id>")
 def ind_recipe(recipe_id):
+    # get all data
     recipe = mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
     ingredients = recipe['ingredients']
     method = recipe['method']
@@ -116,7 +120,6 @@ def ind_recipe(recipe_id):
                            )
 
 
-# Add Recipe
 @app.route("/add_recipe", methods=["GET", "POST"])
 def add_recipe():
     if request.method == "POST":
@@ -131,11 +134,11 @@ def add_recipe():
             "ingredients": request.form.getlist("ingredients"),
             "method": request.form.getlist("method"),
             "username": session["user"]
-
         }
         mongo.db.tasks.insert_one(recipe)
         flash("Recipe added!")
-        return redirect(url_for("recipes"))
+        return redirect(url_for("add_recipe"))
+
     categories = mongo.db.categories.find().sort("category_name", 1)
     return render_template("add_recipe.html", categories=categories)
 
