@@ -1,6 +1,5 @@
 {% extends "base.html" %}
 {% block content %}
-I work
 
 <div class="row">
   {% for recipe in my_recipes %}
@@ -12,28 +11,23 @@ I work
 
         <div class="card-image">
           <img src="{{ recipe.image_url}}"">
-
+        </div>
      
-            
       </div>
+     
 
-      <div class=" card-content">
-        <div class="row">
-          <div class="col s12">
+      <div class="card-content">
+          <div class="row">
 
-          <span class="card-title">{{ recipe.maltese_name }}</span>
-          <span class="card-title">{{ recipe.english_name }}</span>
-        </div>
-          <div class="col s3">
+            <span class="card-title">{{ recipe.maltese_name }}</span>
+            <span class="card-title">{{ recipe.english_name }}</span>
+
             <a href="{{ url_for('edit_recipe', recipe_id=recipe._id)}}" class=" btn"><i class="fas fa-edit"></i></a>
-            <a href="" class=" btn"><i class="fas fa-trash"></i></a>
+            <a href="{{ url_for('delete_recipe', recipe_id=recipe._id)}}" class=" btn"><i class="fas fa-trash"></i></a>
           </div>
-
         </div>
-
       </div>
-
-    </div>
+      
   </a>
 
   {% endfor %}

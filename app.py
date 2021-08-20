@@ -131,25 +131,10 @@ def ind_recipe(recipe_id):
                            )
 
 
+# Add recipe
 @app.route("/add_recipe", methods=["GET", "POST"])
 def add_recipe():
     if request.method == "POST":
-
-        amounts = request.form.getlist("amount")
-        unit_names = request.form.getlist("unit_name")
-        ingredient_names = request.form.getlist("ingredient_name")
-        ingredient = [None] * len(ingredient_names)
-        ingredients = []
-
-        for i in range(len(ingredient_names)):
-            ingredient[i] = {
-                "amount": amounts[i],
-                "unit_name": unit_names[i],
-                "ingredient_name": ingredient_names[i],
-            }
-
-            ingredients.append(ingredient[i])
-
         recipe = {
             "image_url": request.form.get("image_url"),
             "maltese_name": request.form.get("maltese_name"),
@@ -158,7 +143,7 @@ def add_recipe():
             "serving": request.form.get("serving"),
             "prep_time": request.form.get("prep_time"),
             "cook_time": request.form.get("cook_time"),
-            "ingredients": ingredients,
+            "ingredients": request.form.getlist("ingredients"),
             "method": request.form.getlist("method"),
             "username": session["user"]
         }
@@ -172,29 +157,11 @@ def add_recipe():
 
 # Edit Recipe
 
-@app.route("/edit_recipe<recipe_id>",  methods=["GET", "POST"])
+@app.route("/edit_recipe/<recipe_id>",  methods=["GET", "POST"])
 def edit_recipe(recipe_id):
-    categories = mongo.db.categories.find()
-    recipe = mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
-    ingredients = recipe['ingredients']
-    method = recipe['method']
+    
 
     if request.method == "POST":
-
-        amounts = request.form.getlist("amount")
-        unit_names = request.form.getlist("unit_name")
-        ingredient_names = request.form.getlist("ingredient_name")
-        ingredient = [None] * len(ingredient_names)
-        ingredients = []
-
-        for i in range(len(ingredient_names)):
-            ingredient[i] = {
-                "amount": amounts[i],
-                "unit_name": unit_names[i],
-                "ingredient_name": ingredient_names[i],
-            }
-
-            ingredients.append(ingredient[i])
 
         recipe_updated = {
             "image_url": request.form.get("image_url"),
@@ -204,19 +171,33 @@ def edit_recipe(recipe_id):
             "serving": request.form.get("serving"),
             "prep_time": request.form.get("prep_time"),
             "cook_time": request.form.get("cook_time"),
-            "ingredients": ingredients,
+            "ingredients": request.form.getlist("ingredients"),
             "method": request.form.getlist("method"),
             "username": session["user"]
         }
-        mongo.db.recipes.replace_one(recipe, recipe_updated)
+        mongo.db.recipes.update({"_id": ObjectId(recipe_id)}, recipe_updated)
         flash("Recipe updated!")
-        return redirect(url_for("my_recipes")
+        return redirect(url_for("my_recipes"))
+    
+    categories = mongo.db.categories.find()
+    recipe = mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
+    ingredients = recipe['ingredients']
+    method = recipe['method']
     return render_template(
             "edit_recipe.html",
             recipe=recipe,
             categories=categories,
             ingredients=ingredients,
             method=method)
+
+
+# Delete Recipe
+
+@app.route("/delete_recipe/<recipe_id>")
+def delete_recipe(recipe_id):
+    mongo.db.recipes.remove({"_id": ObjectId(recipe_id)})
+    flash ("Recipe deleted")
+    return redirect(url_for("my_recipes"))
 
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),

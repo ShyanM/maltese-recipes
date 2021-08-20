@@ -14,25 +14,27 @@
 
     <div class="row">
 
-        <div class="col s12 m6">
+        <div class="col s12 l6">
             <img src="{{ recipe.image_url}}">
         </div>
 
-        <div class="col s12 m6">
+        <div class="col s12 l6">
 
             <h4> Ingredients </h4>
             {% for ingredient in ingredients %}
-            <p> {{ ingredient.amount }} {{ ingredient.unit_name }} {{ ingredient.ingredient_name }} </p>
+            <li> {{ ingredient }} </li>
             {% endfor %}
         </div>
     </div>
 
     <div class="row">
+        <div class="col s12">
         <h4> Method </h4>
         {% for prep in method %}
         <li>
             {{ prep }}
         </li>
+    </div>
         {% endfor %}
     </div>
 

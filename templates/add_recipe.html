@@ -44,33 +44,28 @@
             </div>
 
             <div class="row" id="inputIngredientRow">
-                <div class="input-field col s2">
-                    <textarea id="amount" name="amount" class="materialize-textarea"></textarea>
-                    <label for="amount">Amount</label>
-                </div>
-                <div class="input-field col s2">
-                    <textarea id="unit" name="unit" class="materialize-textarea"></textarea>
-                    <label for="unit">Unit</label>
-                </div>
-                <div class="input-field col s6">
+                <div class="input-field col s10">
                     <textarea id="ingredients" name="ingredients" class="materialize-textarea"></textarea>
-                    <label for="ingredients">Ingredient Name</label>
-                </div>
-                <div class="col s1">
-                    <button class="btn" id="addIngredientRow"><i class="fas fa-plus-circle"></i></button>
+                    <label for="ingredients">Ingredients including amount and unit</label>
                 </div>
 
+                <div class="col s1">
+                    <a class="btn" id="addIngredientRow"><i class="fas fa-plus-circle"></i></a>
+                </div>
             </div>
+
+
 
             <div class="row" id="newIngredient"></div>
 
-            <div class="input-field col s10" id="inputMethodRow">
-                <textarea id="method" name="method" class="materialize-textarea"></textarea>
-                <label for="method">Recipe Instructions</label>
-            </div>
-            <div class="col s1">
-                <button class="btn" id="addMethodRow"><i class="fas fa-plus-circle"></i></button>
-            </div>
+                <div class="input-field col s10" id="inputMethodRow">
+                    <textarea id="method" name="method" class="materialize-textarea"></textarea>
+                    <label for="method">Recipe Instructions</label>
+                </div>
+                <div class="col s1">
+                    <a class="btn" id="addMethodRow"><i class="fas fa-plus-circle"></i></a>
+                </div>
+            
 
             <div class="row" id="newMethod"></div>
         </div>

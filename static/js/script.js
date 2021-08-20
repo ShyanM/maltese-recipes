@@ -10,22 +10,12 @@ $('select').formSelect();
 $("#addIngredientRow").click(function () {
   var html = '';
   html += '<div class="row" id="inputIngredientRow">';
-    html += '<div class="input-field col s2">';
-    html += '<textarea id="amount" name="amount" class="materialize-textarea"></textarea>';
-    html += '<label for="amount">Amount</label>';
-    html += '</div>';
-
-    html += '<div class="input-field col s2">';
-    html += '<textarea id="unit" name="unit" class="materialize-textarea"></textarea>';
-    html += '<label for="unit">Unit</label>';
-    html += '</div>';
-
-    html += '<div class="input-field col s6">';
+    html += '<div class="input-field col s10">';
     html += '<textarea id="ingredients" name="ingredients" class="materialize-textarea"></textarea>';
-    html += '<label for="ingredients">Ingredients</label>';
+    html += '<label for="ingredients">Ingredients including amount and unit</label>';
     html += '</div>';
     html += '<div class="col s1">';
-    html += '<button class="btn" id="removeIngredient"><i class="fas fa-minus-circle"></i></button>';
+    html += '<a class="btn" id="removeIngredient"><i class="fas fa-minus-circle"></i></a>';
     html += '</div>';
   html += '</div>';
 
@@ -47,7 +37,7 @@ $("#addMethodRow").click(function () {
   html += '<label for="method">Recipe Instructions</label>';
   html += '</div>';
   html += '<div class="col s1">';
-  html += '<button class="btn" id="removeMethod"><i class="fas fa-minus-circle"></i></button>';
+  html += '<a class="btn" id="removeMethod"><i class="fas fa-minus-circle"></i></a>';
     html += '</div>';
   html += '</div>';
 

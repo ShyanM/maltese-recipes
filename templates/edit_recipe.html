@@ -30,12 +30,12 @@
 
             <div class="input-field col s12">
                 <select id="category_name" name="category_name" class="validate" required>
-                    <option value="" disabled selected>Choose Category</option>
+                    <option value="" disabled>Choose Category</option>
                     {% for category in categories %}
                     {% if category.category_name == recipe.category_name %}
-                    <option value="{{ category.category_name }}">{{ category.category_name }}</option>
-                    {% else %}
                     <option value="{{ category.category_name }}" selected>{{ category.category_name }}</option>
+                    {% else %}
+                    <option value="{{ category.category_name }}">{{ category.category_name }}</option>
                     {% endif %}
                     {% endfor %}
 
@@ -60,46 +60,38 @@
             {% for ingredient in ingredients %}
 
             <div class="row" id="inputIngredientRow">
-                <div class="input-field col s2">
-                    <textarea id="amount" name="amount" class="materialize-textarea">
-                        {{- ingredient.amount -}}
+
+                <div class="input-field col s10">
+                    <textarea id="ingredient_{{loop.index}}" name="ingredients" class="materialize-textarea">
+                        {{- ingredient -}}
                     </textarea>
-                    <label for="amount">Amount</label>
+                    <label for="ingredient_{{loop.index}}">Ingredient Name</label>
                 </div>
-                <div class="input-field col s2">
-                    <textarea id="unit" name="unit" class="materialize-textarea">
-                        {{- ingredient.unit -}}
-                    </textarea>
-                    <label for="unit">Unit</label>
-                </div>
-                <div class="input-field col s6">
-                    <textarea id="ingredients" name="ingredients" class="materialize-textarea">
-                        {{- ingredient.ingredient_name -}}
-                    </textarea>
-                    <label for="ingredients">Ingredient Name</label>
-                </div>
+
                 <div class="col s1">
                     <button class="btn" id="addIngredientRow"><i class="fas fa-plus-circle"></i></button>
                 </div>
-
             </div>
-
-           
-
-            <div class="row" id="newIngredient"></div>
             {% endfor %}
+            <div class="row" id="newIngredient"></div>
+            
 
+
+            {% for methods in method %}
             <div class="input-field col s10" id="inputMethodRow">
-                <textarea id="method" name="method" class="materialize-textarea">
-                    {{- recipe.method -}}
-                </textarea>
-                <label for="method">Recipe Instructions</label>
-            </div>
-            <div class="col s1">
-                <button class="btn" id="addMethodRow"><i class="fas fa-plus-circle"></i></button>
-            </div>
 
+                <textarea id="methods_{{loop.index}}" name="method" class="materialize-textarea">
+                    {{- methods -}}
+                </textarea>
+                <label for="methods_{{loop.index}}">Recipe Instructions</label>
+
+                <div class="col s1">
+                    <a id="addMethodRow"><i class="fas fa-plus-circle"></i></a>
+                </div>
+            </div>
+            {% endfor %}
             <div class="row" id="newMethod"></div>
+            
         </div>
 </div>
 
