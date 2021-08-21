@@ -19,7 +19,6 @@ mongo = PyMongo(app)
 
 
 @app.route("/")
-
 # ------------------------ MAIN PAGE -----------------------------------
 # All recipes
 @app.route("/all_recipes")
