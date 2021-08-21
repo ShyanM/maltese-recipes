@@ -4,6 +4,7 @@
 <div class="row">
   {% for recipe in my_recipes %}
 
+  {% if session["user"] == recipe.username %}
   <a href="{{ url_for('ind_recipe', recipe_id=recipe._id) }}">
     <div class="col s12 m4">
 
@@ -28,6 +29,7 @@
       </div>
     </div>
   </a>
+  {% endif %}
 
   {% endfor %}
 </div>
