@@ -1,5 +1,8 @@
 
-![alt text](image)
+![alt text](assets/responsive.png)
+
+You can find a link to the live website [here](https://maltese-recipes.herokuapp.com/all_recipes).
+
 
 # Maltese Recipes
 
@@ -190,6 +193,15 @@ http://partaste.com/worldrecipes/imqarrun-il-forn-maltese-baked-macaroni-cassero
 https://www.deliciousmagazine.co.uk/recipes/ottijiet-maltese-spice-biscuits/
 
 ### Code
+
+* General
+
+    * [Bootstrap](https://getbootstrap.com)
+    * [W3Schools](https://www.w3schools.com) 
+    * [CSS tricks](https://css-tricks.com)
+    * [Stack Overflow](https://stackoverflow.com/)
+
+* Specific Code
 
 - Code to add input fields dynamically: https://bootstrapfriendly.com/blog/dynamically-add-or-remove-form-input-fields-using-jquery/
 - General help from the Code Institute tasks project.
