@@ -19,9 +19,20 @@ mongo = PyMongo(app)
 
 
 @app.route("/")
+
+# ------------------------ MAIN PAGE -----------------------------------
+# All recipes
 @app.route("/all_recipes")
 def all_recipes():
-    recipes = mongo.db.recipes.find()
+    recipes = list(mongo.db.recipes.find())
+    return render_template("recipes.html", recipes=recipes)
+
+
+# Search
+@app.route("/search", methods=["GET", "POST"])
+def search():
+    query = request.form.get("query")
+    recipes = list(mongo.db.recipes.find({"$text": {"$search": query}}))
     return render_template("recipes.html", recipes=recipes)
 
 
@@ -159,10 +170,8 @@ def add_recipe():
 
 @app.route("/edit_recipe/<recipe_id>",  methods=["GET", "POST"])
 def edit_recipe(recipe_id):
-    
 
     if request.method == "POST":
-
         recipe_updated = {
             "image_url": request.form.get("image_url"),
             "maltese_name": request.form.get("maltese_name"),
@@ -178,7 +187,7 @@ def edit_recipe(recipe_id):
         mongo.db.recipes.update({"_id": ObjectId(recipe_id)}, recipe_updated)
         flash("Recipe updated!")
         return redirect(url_for("my_recipes"))
-    
+
     categories = mongo.db.categories.find()
     recipe = mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
     ingredients = recipe['ingredients']
@@ -196,8 +205,9 @@ def edit_recipe(recipe_id):
 @app.route("/delete_recipe/<recipe_id>")
 def delete_recipe(recipe_id):
     mongo.db.recipes.remove({"_id": ObjectId(recipe_id)})
-    flash ("Recipe deleted")
+    flash("Recipe deleted")
     return redirect(url_for("my_recipes"))
+
 
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),

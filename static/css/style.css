@@ -1,0 +1,50 @@
+html, body {
+    height: 100%;
+}
+
+nav {
+    background-color: #345567;
+}
+
+.sidenav {
+    background-color: #345567;
+}
+
+.sidenav li>a {
+    color: white;
+}
+
+
+.card-content {
+    background-color: #E3B05F;
+}
+
+
+.card .card-content .card-title  {
+    color: white;
+}
+
+.search {
+    padding-top: 20px;
+}
+
+.search_buttons {
+    padding-top: 20px;
+}
+
+.btn-small {
+    background-color: #345567;
+}
+
+.btn {
+    background-color: #345567;
+}
+
+.full_recipe {
+    background-color: #E3B05F;
+    padding: 10px;
+}
+
+.image {
+    overflow: hidden;
+}

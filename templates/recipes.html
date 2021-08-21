@@ -2,6 +2,21 @@
 {% block content %}
 
 
+
+  <form action="{{url_for('search')}}" method="POST" class="col s12">
+    <div class="row search">
+      <div class="input-field col s12 m8">
+        <input type="text" name="query" id="query" validate>
+        <label for="query">Search Recipes</label>
+      </div>
+      <div class="col s12 m4 search_buttons">
+        <a href="{{ url_for('all_recipes') }}" class="btn-small">Reset</a>
+        <button type="submit" class="btn-small">Search</button>
+    </div>
+    </div>
+  </form>
+
+
 <div class="row">
   {% for recipe in recipes %}
   <a href="{{ url_for('ind_recipe', recipe_id=recipe._id) }}">
@@ -11,10 +26,6 @@
 
       <div class="card-image">
         <img src="{{ recipe.image_url}}"">
-
-        <form action="">
-          <a class=" btn-floating halfway-fab waves-effect waves-light red"><i class="far fa-heart"></i></a>
-        </form>
             
       </div>
 
