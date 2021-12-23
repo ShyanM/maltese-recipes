@@ -7,7 +7,7 @@ $('select').formSelect();
 
 // add row
 
-<!-- dynamic form fileds with the help of https://bootstrapfriendly.com/blog/dynamically-add-or-remove-form-input-fields-using-jquery/ -->
+/*  dynamic form fileds with the help of https://bootstrapfriendly.com/blog/dynamically-add-or-remove-form-input-fields-using-jquery/ */
 
 $("#addIngredientRow").click(function () {
   var html = '';

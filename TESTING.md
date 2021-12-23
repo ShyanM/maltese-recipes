@@ -17,13 +17,20 @@
 
  ## Validation testing
 
+ [PEP8 Compliance](assets/pep8_validator.png)
+ Had a few indentation issues which were solved.
+
 [CSS Validator](assets/Css_validator.png)
 
 No issues in the CSS validator.
 
 [Html Validator](assets/html_validator.png)
 
-The HTML validator showed some issues with regards to the image and missing alt, but since the images are links submitted by viewers.
+There was an error in the html where the url of the image was showing an extra inverted comma at the end. This was amended and cleared most of the issues. The HTML validator showed some issues with regards to the image and missing alt, but since the images are links submitted by viewers it makes sense that an alt is not present.
+
+[JS Validator](assets/jshint_validator.png)
+
+Had an issue with a comment that didn't have the appropriate comment signs (/*), which was causing issues with the rest of the script. Changed that and solved it.
 
  ### Lighthouse
 
